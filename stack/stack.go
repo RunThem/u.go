@@ -14,6 +14,11 @@ func New[T any](size int) *Stack[T] {
 	return &Stack[T]{items: make([]T, 0, size)}
 }
 
+// NewFrom create a new LIFO stack and initialize it
+func NewFrom[T any](items ...T) *Stack[T] {
+	return &Stack[T]{items: items}
+}
+
 // Size returns the LIFO stack size
 func (s *Stack[T]) Size() int {
 	return len(s.items)
