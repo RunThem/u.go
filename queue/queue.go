@@ -1,5 +1,9 @@
 package queue
 
+import (
+	"fmt"
+)
+
 // Queue implements a FIFO queue data structure
 type Queue[T any] struct {
 	items []T
@@ -54,4 +58,22 @@ func (q *Queue[T]) Pop() T {
 	q.items = q.items[1:]
 
 	return item
+}
+
+// Clear clears all item in the FIFO queue
+func (q *Queue[T]) Clear() {
+	q.items = q.items[:0]
+}
+
+// Clone returns a new stack of the FIFO queue
+func (q *Queue[T]) Clone() *Queue[T] {
+	itmes := make([]T, q.Size(), q.Cap())
+	copy(itmes, q.items)
+
+	return &Queue[T]{items: itmes}
+}
+
+// String returns a string representation of the FIFO queue
+func (q *Queue[T]) String() string {
+	return fmt.Sprintf("%v", q.items)
 }
