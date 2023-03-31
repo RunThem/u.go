@@ -105,3 +105,13 @@ func (v *Vector[T]) Replace(pos int, val T) {
 
 	v.data[pos] = val
 }
+
+// Clear clears all data in the vector
+func (v *Vector[T]) Clear() {
+	v.data = v.data[:0]
+}
+
+// Data returns internal data of the vector
+func (v *Vector[T]) Data() []T {
+	return v.data
+}
