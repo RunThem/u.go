@@ -28,7 +28,7 @@ func (v *Vector[T]) Empty() bool {
 // At returns the value at position pos, returns nil if pos is out off range
 func (v *Vector[T]) At(pos int) T {
 	if pos < 0 || pos >= v.Size() {
-		panic("ouf off range")
+		panic("out off range")
 	}
 
 	return v.data[pos]
