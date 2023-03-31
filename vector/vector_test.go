@@ -63,3 +63,18 @@ func TestInsert(t *testing.T) {
 		assert.Equal(t, v, vec.At(k))
 	}
 }
+
+func TestRemove(t *testing.T) {
+	arr := []int{12, 14}
+	vec := NewFrom(11, 12, 13, 14, 15)
+
+	assert.Equal(t, 11, vec.Remove(0))
+	assert.Equal(t, 13, vec.Remove(1))
+	assert.Equal(t, 15, vec.Remove(2))
+
+	assert.Equal(t, len(arr), vec.Size())
+
+	for k, v := range arr {
+		assert.Equal(t, v, vec.At(k))
+	}
+}
