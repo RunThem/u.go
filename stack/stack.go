@@ -60,7 +60,7 @@ func (s *Stack[T]) Pop() T {
 	return item
 }
 
-// Replace replaces the emelent at the top of the stack
+// Replace replaces the element at the top of the stack
 func (s *Stack[T]) Replace(item T) T {
 	v := s.Peek()
 
@@ -76,10 +76,10 @@ func (s *Stack[T]) Clear() {
 
 // Clone returns a new stack of the LIFO stack
 func (s *Stack[T]) Clone() *Stack[T] {
-	itmes := make([]T, s.Size(), s.Cap())
-	copy(itmes, s.items)
+	items := make([]T, s.Size(), s.Cap())
+	copy(items, s.items)
 
-	return &Stack[T]{items: itmes}
+	return &Stack[T]{items: items}
 }
 
 // String returns a string representation of the LIFO stack

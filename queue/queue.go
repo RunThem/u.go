@@ -67,10 +67,10 @@ func (q *Queue[T]) Clear() {
 
 // Clone returns a new stack of the FIFO queue
 func (q *Queue[T]) Clone() *Queue[T] {
-	itmes := make([]T, q.Size(), q.Cap())
-	copy(itmes, q.items)
+	items := make([]T, q.Size(), q.Cap())
+	copy(items, q.items)
 
-	return &Queue[T]{items: itmes}
+	return &Queue[T]{items: items}
 }
 
 // String returns a string representation of the FIFO queue

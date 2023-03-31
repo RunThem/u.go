@@ -68,7 +68,7 @@ func (v *Vector[T]) Pop() T {
 	return item
 }
 
-// Insert insert item at position pos, returns nil if pos is out off range
+// Insert inserts item at position pos, returns nil if pos is out off range
 func (v *Vector[T]) Insert(pos int, item T) {
 	if pos < 0 || pos > v.Size() {
 		panic("out off range")
@@ -82,7 +82,7 @@ func (v *Vector[T]) Insert(pos int, item T) {
 	}
 }
 
-// Remove remove the item of the position pos in the vector, returns nil if pos is out off range
+// Remove removes the item of the position pos in the vector, returns nil if pos is out off range
 func (v *Vector[T]) Remove(pos int) T {
 	if pos < 0 || pos >= v.Size() {
 		panic("out off range")
