@@ -76,3 +76,20 @@ func (v *Vector[T]) Insert(pos int, val T) {
 	copy(v.data[pos+1:], v.data[pos:])
 	v.data[pos] = val
 }
+
+// Remove remove the value of the position pos in the vector, returns nil if pos is out off range
+func (v *Vector[T]) Remove(pos int) T {
+	if pos < 0 || pos >= v.Size() {
+		panic("out off range")
+	}
+
+	val := v.At(pos)
+
+	if pos != v.Size()-1 {
+		copy(v.data[pos:], v.data[pos+1:])
+	}
+
+	v.data = v.data[:len(v.data)-1]
+
+	return val
+}
