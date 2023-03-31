@@ -96,3 +96,12 @@ func (v *Vector[T]) Remove(pos int) T {
 
 	return val
 }
+
+// Replace write the value of the position pos in the vector, returns nil if pos is out off
+func (v *Vector[T]) Replace(pos int, val T) {
+	if pos < 0 || pos >= v.Size() {
+		panic("out off range")
+	}
+
+	v.data[pos] = val
+}
