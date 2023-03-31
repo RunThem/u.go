@@ -115,3 +115,11 @@ func (v *Vector[T]) Clear() {
 func (v *Vector[T]) Data() []T {
 	return v.data
 }
+
+// Clone returns a clone of the vector
+func (v *Vector[T]) Clone() *Vector[T] {
+	data := make([]T, v.Size(), v.Cap())
+	copy(data, v.data)
+
+	return &Vector[T]{data: data}
+}
