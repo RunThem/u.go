@@ -65,3 +65,14 @@ func (v *Vector[T]) Pop() T {
 
 	return val
 }
+
+// Insert insert val at position pos, returns nil if pos is out off range
+func (v *Vector[T]) Insert(pos int, val T) {
+	if pos < 0 || pos > v.Size() {
+		panic("out off range")
+	}
+
+	v.Push(val)
+	copy(v.data[pos+1:], v.data[pos:])
+	v.data[pos] = val
+}
