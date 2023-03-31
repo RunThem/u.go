@@ -73,8 +73,11 @@ func (v *Vector[T]) Insert(pos int, val T) {
 	}
 
 	v.Push(val)
-	copy(v.data[pos+1:], v.data[pos:])
-	v.data[pos] = val
+
+	if pos != v.Size() {
+		copy(v.data[pos+1:], v.data[pos:])
+		v.data[pos] = val
+	}
 }
 
 // Remove remove the value of the position pos in the vector, returns nil if pos is out off range
