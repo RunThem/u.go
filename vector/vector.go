@@ -12,7 +12,7 @@ func New[T any](size int) *Vector[T] {
 	return &Vector[T]{items: make([]T, 0, size)}
 }
 
-// New create a new Vector and initialize it
+// NewFrom create a new Vector and initialize it
 func NewFrom[T any](items ...T) *Vector[T] {
 	return &Vector[T]{items: items}
 }
