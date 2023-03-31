@@ -40,3 +40,15 @@ func TestNewFrom(t *testing.T) {
 		assert.Equal(t, k, que.Pop())
 	}
 }
+
+func TestClone(t *testing.T) {
+	arr := []int{10, 11, 12, 13, 14}
+	que := NewFrom(10, 11, 12, 13, 14)
+
+	que_1 := que.Clone()
+
+	assert.Equal(t, len(arr), que_1.Size())
+	for _, k := range arr {
+		assert.Equal(t, k, que_1.Pop())
+	}
+}
