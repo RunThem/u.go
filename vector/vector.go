@@ -1,5 +1,7 @@
 package vector
 
+import "fmt"
+
 // Vector is a linear data structure, the internal is a slice
 type Vector[T any] struct {
 	data []T
@@ -122,4 +124,9 @@ func (v *Vector[T]) Clone() *Vector[T] {
 	copy(data, v.data)
 
 	return &Vector[T]{data: data}
+}
+
+// String returns a string representation of the vector
+func (v *Vector[T]) String() string {
+	return fmt.Sprintf("%v", v.data)
 }
