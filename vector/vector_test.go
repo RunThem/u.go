@@ -91,3 +91,27 @@ func TestReplace(t *testing.T) {
 		assert.Equal(t, v, vec.At(k))
 	}
 }
+
+func TestClear(t *testing.T) {
+	vec := NewFrom(11, 12, 13, 14, 15)
+
+	vec.Clear()
+
+	assert.Equal(t, 0, vec.Size())
+}
+
+func TestData(t *testing.T) {
+	vec := NewFrom(11, 12, 13, 14, 15)
+
+	v := vec.Data()
+
+	assert.Equal(t, vec.Size(), len(v))
+
+	for i := 0; i < len(v); i++ {
+		v[i] = 100
+	}
+
+	for i := 0; i < vec.Size(); i++ {
+		assert.Equal(t, 100, vec.At(i))
+	}
+}
