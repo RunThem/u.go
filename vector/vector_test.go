@@ -115,3 +115,14 @@ func TestData(t *testing.T) {
 		assert.Equal(t, 100, vec.At(i))
 	}
 }
+
+func TestClone(t *testing.T) {
+	vec := NewFrom(11, 12, 13, 14, 15)
+	vec_1 := vec.Clone()
+
+	assert.Equal(t, vec.Size(), vec_1.Size())
+
+	for i := 0; i < vec.Size(); i++ {
+		assert.Equal(t, vec.At(i), vec_1.At(i))
+	}
+}
