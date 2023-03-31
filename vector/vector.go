@@ -10,6 +10,11 @@ func New[T any](size int) *Vector[T] {
 	return &Vector[T]{data: make([]T, 0, size)}
 }
 
+// New create a new Vector and initialize it
+func NewFrom[T any](vals ...T) *Vector[T] {
+	return &Vector[T]{data: vals}
+}
+
 // Size returns the size of the vector
 func (v *Vector[T]) Size() int {
 	return len(v.data)
