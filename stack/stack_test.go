@@ -62,3 +62,20 @@ func TestClone(t *testing.T) {
 		assert.Equal(t, arr[i], st_1.Pop())
 	}
 }
+
+func TestNewFrom(t *testing.T) {
+	arr := []int{10, 11, 12, 13, 14}
+	st := NewFrom(10, 11, 12, 13, 14)
+
+	assert.Equal(t, len(arr), st.Size())
+	for i := len(arr) - 1; i >= 0; i-- {
+		assert.Equal(t, arr[i], st.Pop())
+	}
+
+	st = NewFrom(arr...)
+
+	assert.Equal(t, len(arr), st.Size())
+	for i := len(arr) - 1; i >= 0; i-- {
+		assert.Equal(t, arr[i], st.Pop())
+	}
+}
