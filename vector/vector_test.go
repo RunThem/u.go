@@ -30,3 +30,21 @@ func TestBase(t *testing.T) {
 	assert.Equal(t, 15, vec.Pop())
 	assert.Equal(t, 1, vec.Size())
 }
+
+func TestNewFrom(t *testing.T) {
+	arr := []int{12, 13, 14, 15}
+
+	vec := NewFrom(12, 13, 14, 15)
+	assert.Equal(t, 4, vec.Size())
+
+	for k, v := range arr {
+		assert.Equal(t, v, vec.At(k))
+	}
+
+	vec = NewFrom(arr...)
+	assert.Equal(t, 4, vec.Size())
+
+	for k, v := range arr {
+		assert.Equal(t, v, vec.At(k))
+	}
+}
