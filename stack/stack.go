@@ -1,5 +1,9 @@
 package stack
 
+import (
+	"fmt"
+)
+
 // Stack implements the LIFO Stack
 type Stack[T any] struct {
 	items []T
@@ -58,4 +62,22 @@ func (s *Stack[T]) Replace(item T) T {
 	s.items[s.Size()-1] = item
 
 	return v
+}
+
+// Clear clears all item in the LIFO stack
+func (s *Stack[T]) Clear() {
+	s.items = s.items[:0]
+}
+
+// Clone returns a new stack of the LIFO stack
+func (s *Stack[T]) Clone() *Stack[T] {
+	itmes := make([]T, s.Size(), s.Cap())
+	copy(itmes, s.items)
+
+	return &Stack[T]{items: itmes}
+}
+
+// String returns a string representation of the LIFO stack
+func (s *Stack[T]) String() string {
+	return fmt.Sprintf("%v", s.items)
 }
