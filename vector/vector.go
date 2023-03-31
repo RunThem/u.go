@@ -2,131 +2,131 @@ package vector
 
 import "fmt"
 
-// Vector is a linear data structure, the internal is a slice
+// Vector is a linear times structure, the internal is a slice
 type Vector[T any] struct {
-	data []T
+	items []T
 }
 
 // New create a new Vector
 func New[T any](size int) *Vector[T] {
-	return &Vector[T]{data: make([]T, 0, size)}
+	return &Vector[T]{items: make([]T, 0, size)}
 }
 
 // New create a new Vector and initialize it
-func NewFrom[T any](vals ...T) *Vector[T] {
-	return &Vector[T]{data: vals}
+func NewFrom[T any](items ...T) *Vector[T] {
+	return &Vector[T]{items: items}
 }
 
 // Size returns the size of the vector
 func (v *Vector[T]) Size() int {
-	return len(v.data)
+	return len(v.items)
 }
 
 // Cap returns the capacity of the vector
 func (v *Vector[T]) Cap() int {
-	return cap(v.data)
+	return cap(v.items)
 }
 
 // Empty returns true if the vector is empty, otherwise returns false
 func (v *Vector[T]) Empty() bool {
-	return len(v.data) == 0
+	return len(v.items) == 0
 }
 
-// At returns the value at position pos, returns nil if pos is out off range
+// At returns the item at position pos, returns nil if pos is out off range
 func (v *Vector[T]) At(pos int) T {
 	if pos < 0 || pos >= v.Size() {
 		panic("out off range")
 	}
 
-	return v.data[pos]
+	return v.items[pos]
 }
 
-// Front return the first value in the vector, returns nil if the vector is empty
+// Front return the first item in the vector, returns nil if the vector is empty
 func (v *Vector[T]) Front() T {
 	return v.At(0)
 }
 
-// Back return the last value in the vector, returns nil if the vector is empty
+// Back return the last item in the vector, returns nil if the vector is empty
 func (v *Vector[T]) Back() T {
 	return v.At(v.Size() - 1)
 }
 
-// Push pushes val to the back of the vector
-func (v *Vector[T]) Push(val T) {
-	v.data = append(v.data, val)
+// Push pushes item to the back of the vector
+func (v *Vector[T]) Push(item T) {
+	v.items = append(v.items, item)
 }
 
-// Pop returns the last val of the vector and erase it, returns nil if the vector is empty
+// Pop returns the last item of the vector and erase it, returns nil if the vector is empty
 func (v *Vector[T]) Pop() T {
 	if v.Empty() {
 		panic("out off range")
 	}
 
-	val := v.Back()
-	v.data = v.data[:len(v.data)-1]
+	item := v.Back()
+	v.items = v.items[:len(v.items)-1]
 
-	return val
+	return item
 }
 
-// Insert insert val at position pos, returns nil if pos is out off range
-func (v *Vector[T]) Insert(pos int, val T) {
+// Insert insert item at position pos, returns nil if pos is out off range
+func (v *Vector[T]) Insert(pos int, item T) {
 	if pos < 0 || pos > v.Size() {
 		panic("out off range")
 	}
 
-	v.Push(val)
+	v.Push(item)
 
 	if pos != v.Size() {
-		copy(v.data[pos+1:], v.data[pos:])
-		v.data[pos] = val
+		copy(v.items[pos+1:], v.items[pos:])
+		v.items[pos] = item
 	}
 }
 
-// Remove remove the value of the position pos in the vector, returns nil if pos is out off range
+// Remove remove the item of the position pos in the vector, returns nil if pos is out off range
 func (v *Vector[T]) Remove(pos int) T {
 	if pos < 0 || pos >= v.Size() {
 		panic("out off range")
 	}
 
-	val := v.At(pos)
+	item := v.At(pos)
 
 	if pos != v.Size()-1 {
-		copy(v.data[pos:], v.data[pos+1:])
+		copy(v.items[pos:], v.items[pos+1:])
 	}
 
-	v.data = v.data[:len(v.data)-1]
+	v.items = v.items[:len(v.items)-1]
 
-	return val
+	return item
 }
 
-// Replace write the value of the position pos in the vector, returns nil if pos is out off
-func (v *Vector[T]) Replace(pos int, val T) {
+// Replace write the item of the position pos in the vector, returns nil if pos is out off
+func (v *Vector[T]) Replace(pos int, item T) {
 	if pos < 0 || pos >= v.Size() {
 		panic("out off range")
 	}
 
-	v.data[pos] = val
+	v.items[pos] = item
 }
 
 // Clear clears all data in the vector
 func (v *Vector[T]) Clear() {
-	v.data = v.data[:0]
+	v.items = v.items[:0]
 }
 
 // Data returns internal data of the vector
 func (v *Vector[T]) Data() []T {
-	return v.data
+	return v.items
 }
 
 // Clone returns a clone of the vector
 func (v *Vector[T]) Clone() *Vector[T] {
 	data := make([]T, v.Size(), v.Cap())
-	copy(data, v.data)
+	copy(data, v.items)
 
-	return &Vector[T]{data: data}
+	return &Vector[T]{items: data}
 }
 
 // String returns a string representation of the vector
 func (v *Vector[T]) String() string {
-	return fmt.Sprintf("%v", v.data)
+	return fmt.Sprintf("%v", v.items)
 }
