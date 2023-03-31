@@ -78,3 +78,16 @@ func TestRemove(t *testing.T) {
 		assert.Equal(t, v, vec.At(k))
 	}
 }
+
+func TestReplace(t *testing.T) {
+	arr := []int{15, 14, 13, 12, 11}
+	vec := NewFrom(11, 12, 13, 14, 15)
+
+	for k, v := range arr {
+		vec.Replace(k, v)
+	}
+
+	for k, v := range arr {
+		assert.Equal(t, v, vec.At(k))
+	}
+}
