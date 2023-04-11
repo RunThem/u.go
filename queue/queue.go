@@ -35,8 +35,8 @@ func (q *Queue[T]) Empty() bool {
 }
 
 // Push inserts a new element at the top of the queue
-func (q *Queue[T]) Push(item T) {
-	q.items = append(q.items, item)
+func (q *Queue[T]) Push(item ...T) {
+	q.items = append(q.items, item...)
 }
 
 // Peek returns the top element of the queue without removing is

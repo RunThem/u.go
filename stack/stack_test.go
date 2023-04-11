@@ -12,9 +12,7 @@ func TestBase(t *testing.T) {
 
 	assert.True(t, st.Empty())
 
-	for _, k := range arr {
-		st.Push(k)
-	}
+	st.Push(arr...)
 
 	assert.Equal(t, len(arr), st.Size())
 

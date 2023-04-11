@@ -35,8 +35,8 @@ func (s *Stack[T]) Empty() bool {
 }
 
 // Push inserts a new element at the top of the stack
-func (s *Stack[T]) Push(item T) {
-	s.items = append(s.items, item)
+func (s *Stack[T]) Push(item ...T) {
+	s.items = append(s.items, item...)
 }
 
 // Peek returns the top element of the stack without removing is

@@ -52,8 +52,8 @@ func (v *Vector[T]) Back() T {
 }
 
 // Push pushes item to the back of the vector
-func (v *Vector[T]) Push(item T) {
-	v.items = append(v.items, item)
+func (v *Vector[T]) Push(item ...T) {
+	v.items = append(v.items, item...)
 }
 
 // Pop returns the last item of the vector and erase it, returns nil if the vector is empty

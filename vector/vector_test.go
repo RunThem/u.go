@@ -13,9 +13,7 @@ func TestBase(t *testing.T) {
 	assert.Equal(t, 0, vec.Size())
 	assert.Equal(t, 10, vec.Cap())
 
-	vec.Push(12)
-	vec.Push(15)
-	vec.Push(22)
+	vec.Push(12, 15, 22)
 	assert.False(t, vec.Empty())
 	assert.Equal(t, 3, vec.Size())
 
