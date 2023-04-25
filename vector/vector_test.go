@@ -124,3 +124,44 @@ func TestClone(t *testing.T) {
 		assert.Equal(t, vec.At(i), vec_1.At(i))
 	}
 }
+
+func TestFind(t *testing.T) {
+	vec := NewFrom(11, 12, 13, 14, 15)
+
+	i := vec.Find(func(i int) bool {
+		return i == 12
+	})
+
+	assert.Equal(t, 1, i)
+}
+
+func TestFilter(t *testing.T) {
+	vec := NewFrom(11, 12, 13, 14, 15)
+
+	vec_1 := vec.Filter(func(i int) bool {
+		return i%2 == 0
+	})
+
+	assert.Equal(t, 2, vec_1.Size())
+	assert.Equal(t, 12, vec_1.At(0))
+	assert.Equal(t, 14, vec_1.At(1))
+}
+
+func TestMap(t *testing.T) {
+	arr := []int{15, 14, 13, 12, 11}
+	vec := New[int](len(arr))
+
+	for _, v := range arr {
+		vec.Push(v)
+	}
+
+	vec.Map(func(i int) int {
+		return i * 2
+	})
+
+	assert.Equal(t, len(arr), vec.Size())
+
+	for i, v := range arr {
+		assert.Equal(t, v*2, vec.At(i))
+	}
+}
