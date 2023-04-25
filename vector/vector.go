@@ -1,6 +1,8 @@
 package vector
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Vector is a linear times structure, the internal is a slice
 type Vector[T any] struct {
@@ -129,4 +131,42 @@ func (v *Vector[T]) Clone() *Vector[T] {
 // String returns a string representation of the vector
 func (v *Vector[T]) String() string {
 	return fmt.Sprintf("%v", v.items)
+}
+
+// Find returns the index of the first found element
+func (v *Vector[T]) Find(fn func(T) bool) int {
+	for i, v := range v.items {
+		if fn(v) {
+			return i
+		}
+	}
+
+	return -1
+}
+
+// Filter returns all the elements from the collection which satisfies the conditional logic of callback
+func (v *Vector[T]) Filter(fn func(T) bool) *Vector[T] {
+	vec := New[T](len(v.items))
+
+	for _, val := range v.items {
+		if fn(val) {
+			vec.items = append(vec.items, val)
+		}
+	}
+
+	return vec
+}
+
+// Map maps an element to another value
+func (v *Vector[T]) Map(fn func(T) T) {
+	for i, val := range v.items {
+		v.items[i] = fn(val)
+	}
+}
+
+// MapBy maps an element to another value
+func (v *Vector[T]) MapBy(fn func(*T)) {
+	for i, _ := range v.items {
+		fn(&v.items[i])
+	}
 }
