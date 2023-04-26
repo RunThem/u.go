@@ -166,7 +166,7 @@ func (v *Vector[T]) Map(fn func(T) T) {
 
 // MapBy maps an element to another value
 func (v *Vector[T]) MapBy(fn func(*T)) {
-	for i, _ := range v.items {
+	for i := range v.items {
 		fn(&v.items[i])
 	}
 }
